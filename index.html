@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CricTV</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<header class="app-header">
+  <img src="https://crickettv.site/image/api/crickettv.png" alt="CricTV">
+</header>
+
+<main class="container">
+  <section class="poster-grid">
+    
+<div class="poster">
+  <img src="https://vmndims.kayosports.com.au/api/v2/img/69643124e4b0ecc1be9bd84b-1768173913683?location=hero-default&imwidth=1920" alt="India Vs Newzealand">
+  <div class="overlay">
+    <h3>India Vs Newzealand</h3>
+    <div class="meta">14 Jan 2026 • 1:00 PM</div>
+    
+      <a class="btn" href="/home/ind-vs-nz">All Stream</a>
+    
+  </div>
+</div>
+
+<div class="poster">
+  <img src="https://img10.hotstar.com/image/upload/f_auto,q_90,w_1200/sources/r1/cms/prod/8930/1767991858930-h" alt="Highlights">
+  <div class="overlay">
+    <h3>Highlights</h3>
+    <div class="meta">1 Jan 2026 • 07:45 PM</div>
+    
+      <a class="btn" href="/highlights/wpl">Play Highlights</a>
+    
+  </div>
+</div>
+
+<div class="poster">
+  <img src="https://images.swm.digital/image?u=https://production-mediacms-utility-hsyp63r9v13b.s3-ap-southeast-2.amazonaws.com/media/123758/ashes-mini.jpg&q=95&w=1920" alt="Home And Dry: Mini">
+  <div class="overlay">
+    <h3>Home And Dry: Mini</h3>
+    <div class="meta">8 Jan 2026 • 04:55 AM</div>
+    
+      <a class="btn" href="/highlights/ashes.html">All Stream</a>
+    
+  </div>
+</div>
+
+  </section>
+</main>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w, h;
+
+function resize(){
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+const particles=[];
+for(let i=0;i<45;i++){
+  particles.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*1.4+0.4,
+    vx:Math.random()*0.15+0.05,
+    vy:Math.random()*0.1+0.03,
+    a:Math.random()*0.35+0.15
+  });
+}
+
+(function animate(){
+  ctx.clearRect(0,0,w,h);
+  for(const p of particles){
+    p.x+=p.vx; p.y+=p.vy;
+    if(p.x>w) p.x=0;
+    if(p.y>h) p.y=0;
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(255,255,255,${p.a})`;
+    ctx.fill();
+  }
+  requestAnimationFrame(animate);
+})();
+</script>
+
+</body>
+</html>
