@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
   schedule:
-    - cron: "*/05 * * * *" # rebuild every 05 minutes
+    -  * * * *" # rebuild every 05 minutes
 
 jobs:
   build:
